@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import NavBarStrapNative from './components/testesreact/bootstrapnative/navbarToggle'
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <br />
+      <Footer />
     </div>
   );
 }
 
 export default App;
+
+function Header() {
+  return (
+    <NavBarStrapNative></NavBarStrapNative>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="container">
+        <span className="text-muted">Coloque o conteúdo do rodapé.</span>
+      </div>
+    </footer>
+  );
+}
