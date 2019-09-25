@@ -1,13 +1,27 @@
 import React, { } from 'react'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import Post from './post';
 import './posts.scss';
 
 class Posts extends React.Component {
 
-  constructor() {
-    super();
-    this.state = { posts: [] };
+  constructor(props) {
+    super(props);
+    this.state = { posts: [], id: undefined };
+    this.onNavigatePost = this.onNavigatePost.bind(this)
+  }
+
+
+  onNavigatePost = () => {
+    this.props.history.push("/post/" + this.state.id);
+  }
+
+  componentWillUnmount() {
+    console.log("WillUnmount");
+  }
+
+  componentDidUpdate() {
+    if (!isNaN(this.state.id)) this.onNavigatePost();
   }
 
   componentDidMount() {
@@ -45,24 +59,7 @@ class Posts extends React.Component {
         new Date(Date.parse(i.creationDate)).getTime() ? -1 : 1;
     });
 
-  listItems = (list) =>
-    list.map(function (post, i) {
-      return (
 
-        <Router key={i}>
-          <li>
-            <a href="/post/" className="float-left">{post.title}</a>
-            <Link to={"/post/{i}"} className="float-right"> {new Date
-              (Date.parse(post.creationDate)).toLocaleDateString()}
-            </Link>
-            <br />
-            <p>{post.content.substring(0, 200)}...</p>
-          </li>
-          <Route path="/post" component={Post} />
-        </Router>
-      )
-    }
-    );
 
   render() {
     return (
@@ -72,7 +69,22 @@ class Posts extends React.Component {
             <div className="col-md-6 offset-md-3">
               <h4>Nouvelles à propos de Diego</h4>
               <ul className="timeline">
-                {this.listItems(this.listItemsOrdering(this.state.posts))}
+                {
+                  this.listItemsOrdering(this.state.posts).map((post, i) =>
+                    <Router key={i}>
+                      <li>
+                        <button className="float-left btn btn-dark" onClick={() => this.setState({ id: post.id })}>
+                          {post.title} </button>
+                        <button onClick={() => this.setState({ id: post.id })} className="float-right btn btn-dark"> {new Date
+                          (Date.parse(post.creationDate)).toLocaleDateString()}
+                        </button>
+                        <br />
+                        <p>{post.content.substring(0, 200)}...</p>
+                      </li>
+                      <Route path="/post/:id" component={Post} />
+                    </Router>
+                  )
+                }
               </ul>
             </div>
           </div>
@@ -82,4 +94,4 @@ class Posts extends React.Component {
   }
 }
 
-export default Posts
+export default withRouter(Posts);

@@ -2,9 +2,10 @@ import React, { } from 'react'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Post from '../../posts/post';
 import Posts from '../../posts/posts';
-import logo from './../../../logo.svg';
+import About from '../../about/about';
 import './navbarToogle.scss'
 import 'bootstrap/dist/js/bootstrap.bundle.js';
+
 
 class NavBarStrapNative extends React.Component {
 
@@ -14,7 +15,7 @@ class NavBarStrapNative extends React.Component {
             <Router>
                 <header className="pos-f-t">
                     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-                        <Link className="navbar-brand" to="/">D. Giacobbo</Link>
+                        <Link className="navbar-brand" to="/">Diego Giacobo</Link>
                         <button className="navbar-toggler" type="button"
                             data-toggle="collapse" data-target="#navbarToggleExternalContent"
                             aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +27,7 @@ class NavBarStrapNative extends React.Component {
                                     <Link className="nav-link" to="/posts">Posts</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/post">First Post</Link>
+                                    <Link className="nav-link" to="/post/1">First Post</Link>
                                 </li>
                             </ul>
                         </div>
@@ -38,16 +39,16 @@ class NavBarStrapNative extends React.Component {
                                 <Link className="nav-link" to="/posts">Posts</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/post">First Post</Link>
+                                <Link className="nav-link" to="/post/1">Derniere Post</Link>
                             </li>
                         </ul>
                     </nav>
 
                 </header>
 
-                <Route exact path="/" component={Home} />
-                <Route path="/post" component={Post} />
-                <Route path="/posts" component={Posts} />
+                <Route path="/" exact component={About} />
+                <Route path="/post/:id" component={Post} />
+                <Route path="/posts"  component={Posts} />
 
             </Router >
         );
@@ -56,13 +57,3 @@ class NavBarStrapNative extends React.Component {
 }
 
 export default NavBarStrapNative
-
-function Home() {
-    return <div className="App">
-        <div className="App">
-        </div>
-        <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-        </header>
-    </div>
-}

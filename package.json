@@ -15,7 +15,8 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.1.1",
     "reactstrap": "^8.0.1",
-    "sass-loader": "^8.0.0"
+    "sass-loader": "^8.0.0",
+    "simplelightbox": "^1.17.2"
   },
   "scripts": {
     "start": "react-scripts start",
