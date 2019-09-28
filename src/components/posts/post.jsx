@@ -14,9 +14,8 @@ class Post extends Component {
   }
 
   callApi = async () => {
-
     var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-      targetUrl = 'https://back-personal.herokuapp.com/posts/1'
+      targetUrl = 'https://back-personnel.herokuapp.com/posts/';
     const response = await fetch(proxyUrl + targetUrl, {
       method: "GET",
       headers: {

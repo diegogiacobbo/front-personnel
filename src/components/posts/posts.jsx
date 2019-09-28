@@ -32,17 +32,17 @@ class Posts extends React.Component {
 
   callApi = async () => {
     var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-      targetUrl = 'https://back-personal.herokuapp.com/posts/';
+      targetUrl = 'https://back-personnel.herokuapp.com/posts/';
     const response = await fetch(proxyUrl + targetUrl, {
       method: "GET",
       /* mode: 'no-cors' */
-       headers: {
+      headers: {
         "Content-type": "application/json; charset=UTF-8",
         "Authorization": "Basic dXNlcjpwYXNzd29yZA==",
         "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, x-requested-by",
         "Access-Control-Allow-Origin": "*"
       }
-     })
+    })
     if (response.status !== 200) throw Error(await response.json().message);
     return await response.json();
   }
