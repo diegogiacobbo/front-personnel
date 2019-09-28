@@ -31,10 +31,8 @@ class Posts extends React.Component {
   }
 
   callApi = async () => {
-    var proxyUrl = 'https://cors-proxy-personnel.herokuapp.com/',
-      targetUrl = 'https://back-personal.herokuapp.com/posts/';
-    /*  proxyUrl = 'http://localhost:3001/';
-    targetUrl = 'http://localhost:8080/posts/'; */ 
+    var proxyUrl = 'http://cors-anywhere.herokuapp.com/',
+      targetUrl = 'http://back-personnel.herokuapp.com/posts/';
     const response = await fetch(proxyUrl + targetUrl, {
       method: "GET",
       /* mode: 'no-cors' */
