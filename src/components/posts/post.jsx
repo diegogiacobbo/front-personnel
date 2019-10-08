@@ -15,16 +15,33 @@ class Post extends Component {
   }
 
   callApi = async () => {
-    const response = await fetch(
-      process.env.REACT_APP_URL_PROXY_API + "/" +
-      process.env.REACT_APP_URL_API + "/posts/" +
-      this.props.location.state.id, {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        "Authorization": "Basic dXNlcjpwYXNzd29yZA=="
-      }
-    })
+
+    console.log(this.props.location);
+    debugger
+    const response =
+      (this.props.location.pathname !== "/post/derniere") 
+        ?
+        await fetch(
+          process.env.REACT_APP_URL_PROXY_API + "/" +
+          process.env.REACT_APP_URL_API + "/posts/" +
+          this.props.location.state.id, {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "Authorization": "Basic dXNlcjpwYXNzd29yZA=="
+          }
+        })
+        :
+        await fetch(
+          process.env.REACT_APP_URL_PROXY_API + "/" +
+          process.env.REACT_APP_URL_API + "/posts/last/", {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "Authorization": "Basic dXNlcjpwYXNzd29yZA=="
+          }
+        })
+
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
     return body;
