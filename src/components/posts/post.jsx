@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 
 class Post extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.props = props;
     this.state = { response: '' };
   }
 
@@ -14,9 +15,10 @@ class Post extends Component {
   }
 
   callApi = async () => {
-    var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-      targetUrl = 'https://back-personnel.herokuapp.com/posts/';
-    const response = await fetch(proxyUrl + targetUrl, {
+    const response = await fetch(
+      process.env.REACT_APP_URL_PROXY_API + "/" +
+      process.env.REACT_APP_URL_API + "/posts/" +
+      this.props.location.state.id, {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -31,8 +33,8 @@ class Post extends Component {
   render() {
     return (
       <main role="main" className="container">
-        <h1 className="mt-5">{this.state.response.title}</h1>
-        <p className="lead">{this.state.response.content}</p>
+        <h1 className="mt-5" dangerouslySetInnerHTML={{ __html: this.state.response.title }} />
+        <p className="lead" dangerouslySetInnerHTML={{ __html: this.state.response.content }} />
       </main>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import NavBarStrapNative from './components/testesreact/bootstrapnative/navbarToggle'
+import NavBarStrapNative from './components/navbar-bootstrap-native/navbarToggle'
 
 function App() {
 
@@ -24,8 +24,9 @@ function Header() {
 function Footer() {
   return (
     <footer className="footer">
-      <div className="container">
-        <span className="text-muted">Coloque o conteúdo do rodapé.</span>
+      <div className="blog-footer">
+        <p>Modelo de blog criado para o <a href="https://getbootstrap.com/">Bootstrap</a> por <a href="https://www.instagram.com/giacobbod"> @giacobbod</a> .</p>      
+        <p><a href="#">De volta ao topo</a></p>
       </div>
     </footer>
   );

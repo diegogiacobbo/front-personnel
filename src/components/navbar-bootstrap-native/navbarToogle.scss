@@ -1,17 +1,17 @@
-
 *,
 ::after,
 ::before {
   box-sizing: border-box;
 }
 
-.navbar-brand, .navbar-toggler{
-    font-size: 0.93rem;
+.navbar-brand,
+.navbar-toggler {
+  font-size: 0.93rem;
 }
 
 .navbar-nav,
 .navbar-dark,
-.nav-link { 
+.nav-link {
   &:hover {
     color: whitesmoke;
   }
@@ -21,6 +21,15 @@
   background-color: transparent;
 }
 
+.nav-item-site{
+  margin-top: 9px;
+}
+
 li {
   text-align: -webkit-match-parent;
+}
+
+.sujet-blog {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 2.05rem;
 }

@@ -13,7 +13,12 @@ class Posts extends React.Component {
 
 
   onNavigatePost = () => {
-    this.props.history.push("/post/" + this.state.id);
+    this.props.history.push(
+      {
+        pathname: "/post/" + this.state.id,
+        state: { id: this.state.id }
+      }
+    );
   }
 
   componentWillUnmount() {
@@ -31,11 +36,10 @@ class Posts extends React.Component {
   }
 
   callApi = async () => {
-    var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-      targetUrl = 'https://back-personnel.herokuapp.com/posts/';
-    const response = await fetch(proxyUrl + targetUrl, {
+    const response = await fetch(
+      process.env.REACT_APP_URL_PROXY_API + "/" +
+      process.env.REACT_APP_URL_API + '/posts/ispublic/', {
       method: "GET",
-      /* mode: 'no-cors' */
       headers: {
         "Content-type": "application/json; charset=UTF-8",
         "Authorization": "Basic dXNlcjpwYXNzd29yZA==",
@@ -47,42 +51,35 @@ class Posts extends React.Component {
     return await response.json();
   }
 
-  /**
-   * FIXME: Implementar filter apenas com posts de producao,
-   *  apos nova versao de back-end.
-   */
-  listItemsFilter = (list) =>
-    list.filter((post, i) => {
-      return post.creationDate !== i.creationDate;
-    });
-
   listItemsOrdering = (list) =>
     list.sort((post, i) => {
       return new Date(Date.parse(post.creationDate)).getTime() >
         new Date(Date.parse(i.creationDate)).getTime() ? -1 : 1;
     });
 
-
-
   render() {
     return (
       <main role="main" className="container">
         <div className="mt-5 mb-5">
           <div className="row">
-            <div className="col-md-6 offset-md-3">
-              <h4>Nouvelles à propos de Diego</h4>
+            <div className="col-md-8 offset-md-2">
               <ul className="timeline">
                 {
                   this.listItemsOrdering(this.state.posts).map((post, i) =>
                     <Router key={i}>
                       <li>
-                        <button className="float-left btn btn-dark" onClick={() => this.setState({ id: post.id })}>
-                          {post.title} </button>
-                        <button onClick={() => this.setState({ id: post.id })} className="float-right btn btn-dark"> {new Date
-                          (Date.parse(post.creationDate)).toLocaleDateString()}
-                        </button>
+                        <h4 className="float-left display-4 font-italic margin-top--10" dangerouslySetInnerHTML={{ __html: post.title }} />
+                        <button onClick={() => this.setState({ id: post.id })} className="float-right margin-top--8 btn btn-dark" dangerouslySetInnerHTML={{
+                          __html: new Date
+                            (Date.parse(post.creationDate)).toLocaleDateString()
+                        }}
+                        />
                         <br />
-                        <p>{post.content.substring(0, 200)}...</p>
+                        <p className="lead" dangerouslySetInnerHTML={{ __html: post.content.substring(0, 200) }} />
+                        <button onClick={() => this.setState({ id: post.id })} className="lire font-weight-bold btn margin-left--11" dangerouslySetInnerHTML={{
+                          __html: 'Continue lendo...'
+                        }}
+                        />
                       </li>
                       <Route path="/post/:id" component={Post} />
                     </Router>

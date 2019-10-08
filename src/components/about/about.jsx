@@ -32,15 +32,14 @@ class About extends React.Component {
 
         const skills = [
             { type: "HTML", level: 99 },
-            { type: "CSS", level: 98 },
-            { type: "JavaScript", level: 87 },
-            { type: "jQuery", level: 92 },
-            { type: "BootStrap", level: 90 },
-            { type: "Photoshop", level: 100 },
-            { type: "Angular.js", level: 16 },
-            { type: "React.js", level: 25 },
-            { type: "PHP", level: 36 },
-            { type: "Ruby", level: 11 }
+            { type: "SCSS", level: 98 },
+            { type: "JavaScript", level: 90 },
+            { type: "jQuery", level: 83 },
+            { type: "BootStrap", level: 81 },
+            { type: "Angular.js", level: 80 },
+            { type: "Java", level: 75 },
+            { type: "PHP", level: 70 },
+            { type: "React.js", level: 50 }
         ];
 
         const hue = "300";
@@ -49,8 +48,10 @@ class About extends React.Component {
         return (
             <div className="skillbar">
                 <div id="app" className={`skillbar ${collapsed ? 'collapsed' : ''}`}>
-                    <h1>Skill Bars - React Component</h1>
-                    <p>Set the Hue and Saturation on the <code>&lt;About /&gt;</code> instance and let the component deal with the shades</p>
+                    <h4>About Us</h4>
+                    <p>
+                        Etiam porta sem maleuada magna mollis euismod . Cras mattis consectetur purus senta-se no amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+                    </p>
                     <hr />
                     <ul className="skills">
                         {skills.map((skill, index) =>
