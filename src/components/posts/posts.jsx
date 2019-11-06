@@ -7,10 +7,10 @@ class Posts extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { posts: [], id: undefined };
+    this.state = { posts: [], id: undefined, activeIndex: null };
     this.onNavigatePost = this.onNavigatePost.bind(this)
-  }
 
+  }
 
   onNavigatePost = () => {
     this.props.history.push(
@@ -21,31 +21,27 @@ class Posts extends React.Component {
     );
   }
 
-  componentWillUnmount() {
-    console.log("WillUnmount");
-  }
-
   componentDidUpdate() {
     if (!isNaN(this.state.id)) this.onNavigatePost();
   }
+
+  handleClick = (index) => this.setState({ activeIndex: index })
 
   componentDidMount() {
     this.callApi()
       .then(res => this.setState({ posts: res }))
       .catch(err => console.log(err));
+
+    window.scrollTo(0, 0)
   }
+
 
   callApi = async () => {
     const response = await fetch(
       process.env.REACT_APP_URL_PROXY_API + "/" +
       process.env.REACT_APP_URL_API + '/posts/ispublic/', {
       method: "GET",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        "Authorization": "Basic dXNlcjpwYXNzd29yZA==",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, x-requested-by",
-        "Access-Control-Allow-Origin": "*"
-      }
+      headers: { "Content-type": "application/json; charset=UTF-8", "Authorization": "Basic dXNlcjpwYXNzd29yZA==" }
     })
     if (response.status !== 200) throw Error(await response.json().message);
     return await response.json();
@@ -68,18 +64,30 @@ class Posts extends React.Component {
                   this.listItemsOrdering(this.state.posts).map((post, i) =>
                     <Router key={i}>
                       <li>
-                        <h4 className="float-left display-4 font-italic margin-top--10" dangerouslySetInnerHTML={{ __html: post.title }} />
-                        <button onClick={() => this.setState({ id: post.id })} className="float-right margin-top--8 btn btn-dark" dangerouslySetInnerHTML={{
-                          __html: new Date
-                            (Date.parse(post.creationDate)).toLocaleDateString()
-                        }}
-                        />
+                        <div className="row">
+                          <h4 className="col-md-10 display-4 font-italic margin-top--10" dangerouslySetInnerHTML={{ __html: post.title }} />
+                          <div className="col-md-2">
+                            <button
+                              className=" margin-top--8 btn btn-dark"
+                              onClick={() => this.setState({ id: post.id })}
+                              dangerouslySetInnerHTML={{
+                                __html: new Date(Date.parse(post.creationDate)).toLocaleDateString()
+                              }}
+                            />
+                          </div>
+                        </div>
                         <br />
-                        <p className="lead" dangerouslySetInnerHTML={{ __html: post.content.substring(0, 200) }} />
-                        <button onClick={() => this.setState({ id: post.id })} className="lire font-weight-bold btn margin-left--11" dangerouslySetInnerHTML={{
-                          __html: 'Continue lendo...'
-                        }}
+                        <p
+                          className="lead"
+                          dangerouslySetInnerHTML={{
+                            __html: post.content.substring(0, 200) + "..."
+                          }}
                         />
+                        <button
+                          className="lire font-weight-bold btn margin-left--11"
+                          onClick={() => this.setState({ id: post.id })}>
+                          {process.env.REACT_APP_CONTINUEZ_LIRE}
+                        </button>
                       </li>
                       <Route path="/post/:id" component={Post} />
                     </Router>

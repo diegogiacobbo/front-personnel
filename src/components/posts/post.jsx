@@ -5,41 +5,34 @@ class Post extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-    this.state = { response: '' };
+    this.state = { response: '', activeIndex: null };
   }
 
   componentDidMount() {
     this.callApi()
       .then(res => this.setState({ response: res }))
       .catch(err => console.log(err));
+
+    window.scrollTo(0, 0)
   }
 
   callApi = async () => {
-
-    console.log(this.props.location);
-    debugger
     const response =
-      (this.props.location.pathname !== "/post/derniere") 
+      (this.props.location.pathname !== "/post/derniere")
         ?
         await fetch(
           process.env.REACT_APP_URL_PROXY_API + "/" +
           process.env.REACT_APP_URL_API + "/posts/" +
           this.props.location.state.id, {
           method: "GET",
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-            "Authorization": "Basic dXNlcjpwYXNzd29yZA=="
-          }
+          headers: { "Content-type": "application/json; charset=UTF-8", "Authorization": "Basic dXNlcjpwYXNzd29yZA==" }
         })
         :
         await fetch(
           process.env.REACT_APP_URL_PROXY_API + "/" +
           process.env.REACT_APP_URL_API + "/posts/last/", {
           method: "GET",
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-            "Authorization": "Basic dXNlcjpwYXNzd29yZA=="
-          }
+          headers: { "Content-type": "application/json; charset=UTF-8", "Authorization": "Basic dXNlcjpwYXNzd29yZA==" }
         })
 
     const body = await response.json();

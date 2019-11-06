@@ -3,20 +3,21 @@ import './about.scss'
 
 class About extends React.Component {
 
-
     constructor(props) {
         super(props);
         this.state = { collapsed: true };
-
     }
 
     componentDidMount() {
         setTimeout(() => {
             this.setState({ collapsed: false })
         }, 1000);
+
+        window.scrollTo(0, 0)
     }
 
     render() {
+
         const { collapsed } = this.state;
         /** TODO: commencer a faire dinamiquement les skills,
          *  avec les nouvelles versions du back.
@@ -27,48 +28,142 @@ class About extends React.Component {
             );
          *
          */
-
         //const { hue, saturation, skills } = this.props;
 
         const skills = [
-            { type: "HTML", level: 99 },
-            { type: "SCSS", level: 98 },
-            { type: "JavaScript", level: 90 },
-            { type: "jQuery", level: 83 },
-            { type: "BootStrap", level: 81 },
-            { type: "Angular.js", level: 80 },
             { type: "Java", level: 75 },
             { type: "PHP", level: 70 },
-            { type: "React.js", level: 50 }
+            { type: "HTML", level: 99 },
+            { type: "CSS", level: 90 },
+            { type: "JavaScript", level: 84 },
+            { type: "TypeScript", level: 60 },
+            { type: "React.js", level: 60 },
+            { type: "Angular.js", level: 80 },
+            { type: "BootStrap", level: 81 },
+            { type: "jQuery", level: 73 }
         ];
 
-        const hue = "300";
-        const saturation = "40";
+        const hue = "264.34";
+        const saturation = "36";
 
         return (
-            <div className="skillbar">
-                <div id="app" className={`skillbar ${collapsed ? 'collapsed' : ''}`}>
-                    <h4>About Us</h4>
-                    <p>
-                        Etiam porta sem maleuada magna mollis euismod . Cras mattis consectetur purus senta-se no amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-                    </p>
-                    <hr />
-                    <ul className="skills">
-                        {skills.map((skill, index) =>
-                            <li
-                                key={skill.type}
-                                style={{ width: `${skill.level}%`, backgroundColor: `hsl(${hue}, ${saturation}%, ${100 / (index + 3.5)}%)` }}
-                            >
-                                <p>{skill.type}<span>{skill.level}</span></p>
-                            </li>
-                        )}
-                    </ul>
+
+            <div>
+                <div className="bg-image">
+                    <div className="row a-propos-content-image">
+                        <div className="a-propos-image col-md-4 col-auto d-none d-lg-block">
+                        </div>
+                        <div className="col-md-2 ">
+                        </div>
+                        <div className="a-propos-content col-md-6">
+                            <p>{process.env.REACT_APP_A_PROPOS_CONTENU}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div className="cards">
+                    <div className="row mb-2 procergs-dbserver">
+                        <div className="col-md-6 card-1">
+                            <div className="row no-gutters rounded overflow-hidden flex-md-row mb-6 h-md-250 position-relative">
+                                <div className="col p-4 d-flex flex-column position-static">
+                                    <strong className="d-inline-block mb-2">DbServer</strong>
+                                    <h3 className="mb-0">Equipes Ageis</h3>
+                                    <br />
+                                    <div className="mb-1 text-muted">2 anos alocado</div>
+                                    <p className="card-text mb-auto">Este é um cartão mais amplo, com o texto de suporte abaixo como uma entrada natural para conteúdo adicional.</p>
+                                    <br />
+                                    <div className="image-1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-6 card-2">
+                            <div className="row no-gutters rounded overflow-hidden flex-md-row mb-6 h-md-250 position-relative">
+                                <div className="col p-4 d-flex flex-column position-static">
+                                    <strong className="d-inline-block mb-2">Procergs</strong>
+                                    <h3 className="mb-0">Tecnologia de ponta</h3>
+                                    <br />
+                                    <div className="mb-1 text-muted">6 anos de casa</div>
+                                    <p className="mb-auto">Este é um cartão mais amplo, com o texto de suporte abaixo como uma entrada natural para conteúdo adicional.</p>
+                                    <br />
+                                    <div className="image-2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-6">
+                            <div className="p-4">
+                                <h3>Dernières découvertes</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row marques">
+
+                        <div className="col-md-4 col-sm-6 right-border">
+                            <div alt="Marque Node.js" className="node logos"></div>
+                        </div>
+
+                        <div className="col-md-4 col-sm-6 right-border">
+                            <div alt="Marque Npm" className="npm logos"></div>
+                        </div>
+
+                        <div className="col-md-4 col-sm-6">
+                            <div alt="Marque Docker" className="docker logos"></div>
+                        </div>
+
+                        <div className="col-md-4 col-sm-6 right-border">
+                            <div alt="Marque Github" className="github logos"></div>
+                        </div>
+
+                        <div className="col-md-4 col-sm-6 right-border">
+                            <div alt="Marque AWS" className="aws logos"></div>
+                        </div>
+
+                        <div className="col-md-4 col-sm-6">
+                            <div alt="Image Console" className="console logos"></div>
+                        </div>
+
+                        <div className="col-md-4 col-sm-6 right-border">
+                            <div alt="Marque Mongodb" className="mongodb logos"></div>
+                        </div>
+
+                        <div className="col-md-4 col-sm-6">
+                            <div alt="Marque Gulp" className="gulp logos"></div>
+                        </div>
+                    </div>
+
+
+                    <div id="app" className={`skill-bar ${collapsed ? 'collapsed' : ''}`}>
+                        <div className="row mb-2">
+                            <div className="col-md-6">
+                                <div className="col-auto d-none d-lg-block">
+                                    <div className="head-skills refletir link-profile"></div>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <ul className="skills">
+                                    {skills.map((skill, index) =>
+                                        <li
+                                            key={skill.type}
+                                            style={{ width: `${skill.level}%`, backgroundColor: `hsl(${hue}, ${saturation}%, ${100 / (index + 3.5)}%)` }}
+                                        >
+                                            <p>{skill.type}<span>{skill.level}</span></p>
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div >
         )
     }
-
 }
+
 
 export default About
 

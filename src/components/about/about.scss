@@ -1,11 +1,61 @@
-.skillbar {
+@mixin flexContainer {
   max-width: 800px;
   margin: auto;
-  padding: 20px;
+  margin-top: 29px;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+}
+
+.row {
+  @include flexContainer;
+}
+
+@mixin aPropos {
+  @media (min-width: 768px) {
+    
+  }
+}
+
+.a-propos-content-image{
+  padding-top: 110px;
+}
+
+.a-propos-image {
+  @include flexContainer;
+  @include aPropos;
+  //background-image: url("../images/tubaroes.svg");
+  background-position: -10px;
+  z-index: 2;
+  width: 80%;
+  height: 100vh;
+
+}
+
+.a-propos-content {
+  @include flexContainer;
+  @include aPropos;
+  color: #cbbde2;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  p{
+    color: #fff;
+  }
+}
+
+@media (max-width: 768px) {
+  .a-propos-image {
+    margin-top: 58px;
+    padding-top: 8%;
+  }
 }
 
 .skills {
-  margin: 0 0 30px 0;
+  margin: 9% 5% 8% 5%;
+  margin-bottom: 90px;
   padding: 0;
   width: calc(100% - 50px);
   li {
@@ -14,12 +64,13 @@
     background-color: #888;
     color: #fff;
     margin: 10px 0;
-    transition: width 300ms ease-in-out;
+    transition: width 2000ms ease-in-out;
+    border-radius: 5px 21px 21px 5px;
     .collapsed & {
       width: 0 !important;
     }
     p {
-      padding: 10px;
+      padding: 8px;
       margin: 0;
       font-weight: bold;
     }
@@ -36,8 +87,17 @@
     }
   }
 }
-
+.skill-bar{
+  margin-top: 15px;
+  clear: both;
+}
 // Pen specific styling
+strong{
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  font-weight: lighter;
+}
+
 hr {
   height: 1px;
   border: 0;
@@ -46,10 +106,131 @@ hr {
   padding: 0;
 }
 
+h3, h4, h5 {
+  color: #563d7c;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  font-family: "Teko", sans-serif !important;
+  font-size: 2.45rem !important;
+}
+
 small {
   font-size: 11px;
   color: #666;
   a {
     color: inherit;
   }
+}
+
+.bg-image {
+  background-image: url("../images/note.jpeg");
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.procergs-dbserver{
+  padding: 0 11px 0 11px;
+  margin-bottom: 25px !important;
+}
+
+.marques{
+  margin-top: 28px;
+}
+
+@mixin images {
+  background-size: 200px 313px;
+    min-height: 200px;
+    max-width: 203px;
+    margin-top: 10px;
+    margin: 0 15%;
+}
+
+.image-1 {
+  @include images;
+  background-image: url("../images/procergs.png");
+}
+
+.image-2 {
+  @include images;
+  min-height: 311px;
+  background-image: url("../images/dbserver.png");
+}
+
+.parallax-3 {
+  background-image: url("../images/profil.png");
+  height: 180px;
+  width: 180px;
+  border-radius: 150px;
+  margin-left: 30%;
+  margin-left: 20%;
+}
+
+.head-skills{
+  background-image: url("https://cdn2.iconfinder.com/data/icons/competitive-strategy-and-corporate-training/512/719_capability_head_human_knowledge_skill-512.png");
+  height: 188px;
+  width: 188px;
+  background-size: cover;
+  margin-left: 21%;
+  margin-top: 30%;
+  opacity: 0.9;
+}
+
+.refletir{
+  transform: rotateY(180deg);
+}
+
+.right-border{
+  border-right: solid 1px #d8d7cf;
+  margin: 11px 0 11px 0;
+}
+
+.les-interets {
+  margin: auto;
+  margin-left: 15%;
+  width: 100vh;
+  margin-bottom: 35px;
+}
+
+.logos {
+  float: left;
+  clear: right;
+  background-size: cover;
+  height: 18vh;
+  width: 18vh;
+  position: relative;
+  left: 30%;
+}
+
+.node {
+  background-image: url("../images/node.png");
+}
+.npm {
+  background-image: url("../images/npm.png");
+}
+.docker {
+  background-image: url("../images/docker.png");
+}
+.github {
+  background-image: url("../images/github.png");
+}
+.aws {
+  background-image: url("https://www.appythings.nl/wp-content/uploads/2018/06/aws-logo-icon-PNG-Transparent-Background.png");
+}
+.console {
+  background-image: url("../images/console.png");
+}
+.mongodb {
+  background-image: url("http://pluspng.com/img-png/logo-mongodb-png--210.png");
+}
+.gulp {
+  background-image: url("../images/gulp.png");
+  margin-right: 0;
 }
