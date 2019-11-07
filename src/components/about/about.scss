@@ -12,14 +12,14 @@
 
 @mixin aPropos {
   @media (min-width: 768px) {
-    
   }
 }
 
-.a-propos-content-image{
+.a-propos-content-image {
   padding-top: 110px;
 }
 
+/**
 .a-propos-image {
   @include flexContainer;
   @include aPropos;
@@ -28,8 +28,8 @@
   z-index: 2;
   width: 80%;
   height: 100vh;
-
 }
+*/
 
 .a-propos-content {
   @include flexContainer;
@@ -41,7 +41,7 @@
   font-weight: 400;
   line-height: 1.5;
   text-align: left;
-  p{
+  p {
     color: #fff;
   }
 }
@@ -87,12 +87,12 @@
     }
   }
 }
-.skill-bar{
+.skill-bar {
   margin-top: 15px;
   clear: both;
 }
 // Pen specific styling
-strong{
+strong {
   text-transform: uppercase;
   font-size: 0.65rem;
   font-weight: lighter;
@@ -106,7 +106,9 @@ hr {
   padding: 0;
 }
 
-h3, h4, h5 {
+h3,
+h4,
+h5 {
   color: #563d7c;
   text-transform: uppercase;
   font-weight: bold;
@@ -136,21 +138,21 @@ small {
   margin-bottom: 10px;
 }
 
-.procergs-dbserver{
+.procergs-dbserver {
   padding: 0 11px 0 11px;
   margin-bottom: 25px !important;
 }
 
-.marques{
+.marques {
   margin-top: 28px;
 }
 
 @mixin images {
   background-size: 200px 313px;
-    min-height: 200px;
-    max-width: 203px;
-    margin-top: 10px;
-    margin: 0 15%;
+  min-height: 200px;
+  max-width: 203px;
+  margin-top: 10px;
+  margin: 0 15%;
 }
 
 .image-1 {
@@ -173,7 +175,7 @@ small {
   margin-left: 20%;
 }
 
-.head-skills{
+.head-skills {
   background-image: url("https://cdn2.iconfinder.com/data/icons/competitive-strategy-and-corporate-training/512/719_capability_head_human_knowledge_skill-512.png");
   height: 188px;
   width: 188px;
@@ -183,11 +185,11 @@ small {
   opacity: 0.9;
 }
 
-.refletir{
+.refletir {
   transform: rotateY(180deg);
 }
 
-.right-border{
+.right-border {
   border-right: solid 1px #d8d7cf;
   margin: 11px 0 11px 0;
 }

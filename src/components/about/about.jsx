@@ -51,7 +51,7 @@ class About extends React.Component {
             <div>
                 <div className="bg-image">
                     <div className="row a-propos-content-image">
-                        <div className="a-propos-image col-md-4 col-auto d-none d-lg-block">
+                        <div className="col-md-4 col-auto d-none d-lg-block">
                         </div>
                         <div className="col-md-2 ">
                         </div>
@@ -65,28 +65,36 @@ class About extends React.Component {
                         <div className="col-md-6 card-1">
                             <div className="row no-gutters rounded overflow-hidden flex-md-row mb-6 h-md-250 position-relative">
                                 <div className="col p-4 d-flex flex-column position-static">
-                                    <strong className="d-inline-block mb-2">DbServer</strong>
-                                    <h3 className="mb-0">Equipes Ageis</h3>
+                                    <a rel="noopener noreferrer" target="_blank" href="https://www.dbserver.com.br">
+                                        <strong className="d-inline-block mb-2">{process.env.REACT_APP_CARTE_TITLE_1}</strong>
+                                    </a>
+                                    <h3 className="mb-0">{process.env.REACT_APP_CARTE_TITLE_1b}</h3>
                                     <br />
-                                    <div className="mb-1 text-muted">2 anos alocado</div>
-                                    <p className="card-text mb-auto">Este é um cartão mais amplo, com o texto de suporte abaixo como uma entrada natural para conteúdo adicional.</p>
+                                    <div className="mb-1 text-muted">{process.env.REACT_APP_CARTE_SUB_TITLE_1}</div>
                                     <br />
-                                    <div className="image-1">
-                                    </div>
+                                    <p className="card-text mb-auto">{process.env.REACT_APP_CARTE_1}</p>
+                                    <br />
+                                    <a rel="noopener noreferrer" target="_blank" href="https://servicos.corsan.com.br">
+                                        <div className="image-2" />
+                                    </a>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-6 card-2">
                             <div className="row no-gutters rounded overflow-hidden flex-md-row mb-6 h-md-250 position-relative">
                                 <div className="col p-4 d-flex flex-column position-static">
-                                    <strong className="d-inline-block mb-2">Procergs</strong>
-                                    <h3 className="mb-0">Tecnologia de ponta</h3>
+                                    <a rel="noopener noreferrer" target="_blank" href="https://www.procergs.rs.gov.br">
+                                        <strong className="d-inline-block mb-2">{process.env.REACT_APP_CARTE_TITLE_2}</strong>
+                                    </a>
+                                    <h3 className="mb-0">{process.env.REACT_APP_CARTE_TITLE_2b}</h3>
                                     <br />
-                                    <div className="mb-1 text-muted">6 anos de casa</div>
-                                    <p className="mb-auto">Este é um cartão mais amplo, com o texto de suporte abaixo como uma entrada natural para conteúdo adicional.</p>
+                                    <div className="mb-1 text-muted">{process.env.REACT_APP_CARTE_SUB_TITLE_2}</div>
                                     <br />
-                                    <div className="image-2">
-                                    </div>
+                                    <p className="mb-auto">{process.env.REACT_APP_CARTE_2}</p>
+                                    <br />
+                                    <a rel="noopener noreferrer" target="_blank" href="https://agenda.rs.gov.br/">
+                                        <div className="image-1" />
+                                    </a>
                                 </div>
                             </div>
                         </div>
