@@ -2,12 +2,13 @@ import React, { } from 'react'
 import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import Post from './post';
 import './posts.scss';
+import axios from 'axios';
 
 class Posts extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { posts: [], id: undefined, activeIndex: null };
+    this.state = { posts: [], teste: [], id: undefined, activeIndex: null };
     this.onNavigatePost = this.onNavigatePost.bind(this)
 
   }
@@ -28,23 +29,23 @@ class Posts extends React.Component {
   handleClick = (index) => this.setState({ activeIndex: index })
 
   componentDidMount() {
+
     this.callApi()
-      .then(res => this.setState({ posts: res }))
+      .then(res => this.setState({ posts: res.data }))
       .catch(err => console.log(err));
 
     window.scrollTo(0, 0)
   }
 
-
   callApi = async () => {
-    const response = await fetch(
-      process.env.REACT_APP_URL_PROXY_API + "/" +
-      process.env.REACT_APP_URL_API + '/posts/ispublic/', {
-      method: "GET",
-      headers: { "Content-type": "application/json; charset=UTF-8", "Authorization": "Basic dXNlcjpwYXNzd29yZA==" }
-    })
-    if (response.status !== 200) throw Error(await response.json().message);
-    return await response.json();
+    const response = await
+      axios.get(process.env.REACT_APP_URL_PROXY_API + "/" +
+        process.env.REACT_APP_URL_API + '/posts/ispublic/', {
+        headers: { "Content-type": "application/json; charset=UTF-8", "Authorization": "Basic dXNlcjpwYXNzd29yZA==" }
+      })
+
+    if (response.status !== 200) throw Error(await response.message);
+    return response;
   }
 
   listItemsOrdering = (list) =>
