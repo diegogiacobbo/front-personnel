@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { CircleLoader } from 'react-spinners';
+
+const override = "display: block;margin: 0 auto; margin-top: 40vh;";
 
 class Post extends Component {
 
   constructor(props) {
     super(props);
     this.props = props;
-    this.state = { response: {}, activeIndex: null };
+    this.state = { response: {}, activeIndex: null, loading: true };
   }
 
   componentDidUpdate(prevProps) {
@@ -27,6 +30,15 @@ class Post extends Component {
   render() {
     return (
       <main role="main" className="container">
+        <div className='sweet-loading'>
+          <CircleLoader
+            css={override}
+            sizeUnit={"px"}
+            size={70}
+            color={'rgb(140, 31, 133)'}
+            loading={this.state.loading}
+          />
+        </div>
         <h1 className="mt-5" dangerouslySetInnerHTML={{ __html: this.state.response.title }} />
         <p className="lead" dangerouslySetInnerHTML={{ __html: this.state.response.content }} />
       </main>

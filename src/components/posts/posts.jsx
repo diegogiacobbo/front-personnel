@@ -3,12 +3,15 @@ import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import Post from './post';
 import './posts.scss';
 import axios from 'axios';
+import { CircleLoader } from 'react-spinners';
+
+const override = "display: block;margin: 0 auto; margin-top: 40vh;";
 
 class Posts extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { posts: [], teste: [], id: undefined, activeIndex: null };
+    this.state = { posts: [], teste: [], id: undefined, activeIndex: null, loading: true };
     this.onNavigatePost = this.onNavigatePost.bind(this)
 
   }
@@ -31,7 +34,7 @@ class Posts extends React.Component {
   componentDidMount() {
 
     this.callApi()
-      .then(res => this.setState({ posts: res.data }))
+      .then(res => this.setState({ posts: res.data, loading: res.status === 200 ? false : true  }))
       .catch(err => console.log(err));
     
       window.scrollTo(0, 0);
@@ -57,6 +60,15 @@ class Posts extends React.Component {
   render() {
     return (
       <main role="main" className="container">
+        <div className='sweet-loading'>
+          <CircleLoader
+            css={override}
+            sizeUnit={"px"}
+            size={70}
+            color={'rgb(140, 31, 133)'}
+            loading={this.state.loading}
+          />
+        </div>
         <div className="mt-5 mb-5">
           <div className="row">
             <div className="col-md-8 offset-md-2">
