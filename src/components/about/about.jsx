@@ -13,7 +13,7 @@ class About extends React.Component {
             this.setState({ collapsed: false })
         }, 1000);
 
-        window.scrollTo(0, 0)
+        //window.scrollTo(0, 0)
     }
 
     render() {

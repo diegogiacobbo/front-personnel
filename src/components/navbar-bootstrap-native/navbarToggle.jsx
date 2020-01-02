@@ -16,7 +16,7 @@ class NavBarStrapNative extends React.Component {
 
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const history = createBrowserHistory()
 
         if (history.location.pathname === "/")
@@ -26,8 +26,6 @@ class NavBarStrapNative extends React.Component {
     }
 
     handleClickOpenToggle = () => {
-        console.log(document.body.classList.contains("overflow"));
-        console.log(this.refNavBar.current.classList.contains("show"))
         if (document.body.classList.contains("overflow")) {
             document.body.classList.remove("overflow");
         }else{

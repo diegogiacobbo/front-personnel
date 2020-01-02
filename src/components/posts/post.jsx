@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import axios from 'axios';
 
 class Post extends Component {
@@ -9,35 +9,19 @@ class Post extends Component {
     this.state = { response: {}, activeIndex: null };
   }
 
-
-  componentDidUpdate() {
-    console.log(this.state.response)
+  componentDidUpdate(prevProps) {
+      if (this.props.location !== prevProps.location) {
+        this.rappelerAutreRoute();
+      }
   }
 
   componentDidMount() {
-    this.callApi(this.choisirPost())
-      .then(res => this.setState({ response: res.data }))
-      .catch(err => console.log(err));
-
-    window.scrollTo(0, 0)
+    this.rappelerAutreRoute();
   }
 
-  choisirPost = () => {
-    return this.props.location.pathname !== "/post/derniere" ? 
-      "/posts/" + this.props.location.state.id : 
-      "/posts/last/";
-  }
-
-  callApi = async (path) => {
-    const response =
-      await axios.get(
-        process.env.REACT_APP_URL_PROXY_API + "/" +
-        process.env.REACT_APP_URL_API + path, {
-        headers: { "Content-type": "application/json; charset=UTF-8", "Authorization": "Basic dXNlcjpwYXNzd29yZA==" }
-      })
-
-    if (response.status !== 200) throw Error(response.message);
-    return response;
+  rappelerAutreRoute() {
+    global.scrollTo(0, 0);
+    this.getPost();
   }
 
   render() {
@@ -48,6 +32,32 @@ class Post extends Component {
       </main>
     );
   }
+
+  choisirPost = () => {
+    let path =
+      process.env.REACT_APP_URL_PROXY_API +
+      process.env.REACT_APP_URL_API;
+
+    if (this.props.location === undefined) {
+      return path + "/posts/last/";
+    }
+    else {
+      return path + (this.props.location.pathname !== "/post/derniere" ?
+        "/posts/" + this.props.location.state.id :
+        "/posts/last/");
+    }
+  }
+
+   getPost = () => {
+    Post.callApi(this.choisirPost())
+      .then(res => this.setState({ response: res.data }))
+      .catch(err => console.log(err));
+  }
+
+  static callApi = async (path) => {
+    return await axios.get(path);
+  }
+
 }
 
 export default Post

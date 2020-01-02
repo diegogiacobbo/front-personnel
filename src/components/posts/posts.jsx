@@ -33,13 +33,13 @@ class Posts extends React.Component {
     this.callApi()
       .then(res => this.setState({ posts: res.data }))
       .catch(err => console.log(err));
-
-    window.scrollTo(0, 0)
+    
+      window.scrollTo(0, 0);
   }
 
   callApi = async () => {
     const response = await
-      axios.get(process.env.REACT_APP_URL_PROXY_API + "/" +
+      axios.get(process.env.REACT_APP_URL_PROXY_API +
         process.env.REACT_APP_URL_API + '/posts/ispublic/', {
         headers: { "Content-type": "application/json; charset=UTF-8", "Authorization": "Basic dXNlcjpwYXNzd29yZA==" }
       })
