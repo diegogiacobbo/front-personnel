@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { CircleLoader } from 'react-spinners';
+import { BarLoader } from 'react-spinners';
 
 const override = "display: block;margin: 0 auto; margin-top: 40vh;";
 
@@ -13,9 +13,9 @@ class Post extends Component {
   }
 
   componentDidUpdate(prevProps) {
-      if (this.props.location !== prevProps.location) {
-        this.rappelerAutreRoute();
-      }
+    if (this.props.location !== prevProps.location) {
+      this.rappelerAutreRoute();
+    }
   }
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class Post extends Component {
     return (
       <main role="main" className="container">
         <div className='sweet-loading'>
-          <CircleLoader
+          <BarLoader
             css={override}
             sizeUnit={"px"}
             size={70}
@@ -60,9 +60,10 @@ class Post extends Component {
     }
   }
 
-   getPost = () => {
+  getPost = () => {
+    debugger;
     Post.callApi(this.choisirPost())
-      .then(res => this.setState({ response: res.data }))
+      .then(res => this.setState({ response: res.data, loading: res.status === 200 ? false : true }))
       .catch(err => console.log(err));
   }
 

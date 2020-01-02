@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import Post from './post';
 import './posts.scss';
 import axios from 'axios';
-import { CircleLoader } from 'react-spinners';
+import { ClimbingBoxLoader } from 'react-spinners';
 
 const override = "display: block;margin: 0 auto; margin-top: 40vh;";
 
@@ -32,7 +32,7 @@ class Posts extends React.Component {
   handleClick = (index) => this.setState({ activeIndex: index })
 
   componentDidMount() {
-
+    debugger;
     this.callApi()
       .then(res => this.setState({ posts: res.data, loading: res.status === 200 ? false : true  }))
       .catch(err => console.log(err));
@@ -61,10 +61,10 @@ class Posts extends React.Component {
     return (
       <main role="main" className="container">
         <div className='sweet-loading'>
-          <CircleLoader
+          <ClimbingBoxLoader
             css={override}
             sizeUnit={"px"}
-            size={70}
+            size={15}
             color={'rgb(140, 31, 133)'}
             loading={this.state.loading}
           />
